@@ -1,0 +1,17 @@
+module Xamidimura
+  class Error < StandardError
+  end
+
+  class SourceRevision
+    class Snapshot
+      attr_reader bytes: String
+      attr_reader signature: [Integer, Integer, Integer, Integer, Integer, Integer, Integer]
+      attr_reader digest: String
+    end
+
+    def self.digest: (String bytes) -> String
+    def self.file_digest: (String path) -> String
+    def self.signature: (String path, ?reject_symlink: bool) -> [Integer, Integer, Integer, Integer, Integer, Integer, Integer]
+    def self.read: (String path, ?attempts: Integer, ?reject_symlink: bool) -> Snapshot
+  end
+end
