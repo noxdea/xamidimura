@@ -16,6 +16,8 @@ class SourceRevisionTest < Minitest::Test
       assert_equal snapshot.digest, Xamidimura::SourceRevision.file_digest(path)
       assert_equal Xamidimura::SourceRevision.signature(path), snapshot.signature
       assert_predicate snapshot.bytes, :frozen?
+      assert_predicate snapshot.signature, :frozen?
+      assert_predicate snapshot.digest, :frozen?
     end
   end
 
