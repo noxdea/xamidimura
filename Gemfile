@@ -6,6 +6,7 @@ gemspec
 
 group :development, :test do
   gem "minitest", "~> 6.0"
+  gem "minitest-mock", "~> 5.27"
   gem "rake", "~> 13.0"
-  gem "rbs", "~> 3.9"
+  gem "rbs", "~> 4.1"
 end

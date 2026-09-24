@@ -46,7 +46,7 @@ module Xamidimura
         after = signature(path, reject_symlink: reject_symlink)
         next unless before == after
 
-        return Snapshot.new(bytes.freeze, after, digest(bytes))
+        return Snapshot.new(bytes.freeze, after, digest(bytes).freeze)
       end
       raise Error, "source file changed while it was being read; retry"
     rescue SystemCallError => error
