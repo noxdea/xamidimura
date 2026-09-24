@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#020617">
+  <meta name="description" content="Xamidimura provides stable file snapshots and SHA-256 revision checks for Ruby applications.">
+  <title>Xamidimura — file revision primitives for Ruby</title>
+  <link rel="canonical" href="https://noxdea.github.io/xamidimura/">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap">
+    <a class="brand" href="#top" aria-label="Xamidimura home">Xamidimura<span aria-hidden="true">.</span></a>
+    <nav aria-label="Primary navigation">
+      <a href="#features">Features</a>
+      <a href="#install">Install</a>
+      <a href="https://github.com/noxdea/xamidimura">GitHub</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">Capture the bytes. Check the revision.</h1>
+        <p>Xamidimura reads a stable file snapshot and gives Ruby applications a SHA-256 fingerprint to compare before they save.</p>
+        <div class="hero-actions">
+          <a class="button" href="https://github.com/noxdea/xamidimura#quick-start">Read the quick start</a>
+          <a class="text-link" href="https://rubygems.org/gems/xamidimura">View on RubyGems</a>
+        </div>
+      </div>
+      <figure class="revision-figure">
+        <div class="figure-bar"><span>revision_check.rb</span><span>Ruby</span></div>
+        <pre><code><span class="code-muted">require</span> <span class="code-string">"xamidimura"</span>
+
+snapshot = Xamidimura::SourceRevision
+  .read(<span class="code-string">"notes.md"</span>)
+
+current = Xamidimura::SourceRevision
+  .file_digest(<span class="code-string">"notes.md"</span>)
+
+<span class="code-keyword">if</span> current != snapshot.digest
+  <span class="code-muted"># Handle the external change.</span>
+<span class="code-keyword">end</span></code></pre>
+        <figcaption>A comparison detects a change at that moment. Your application decides what to do next.</figcaption>
+      </figure>
+    </section>
+
+    <section class="features wrap" id="features" aria-labelledby="features-title">
+      <div class="section-intro">
+        <h2 id="features-title">One small job, done precisely.</h2>
+        <p>Revision primitives for editors and other apps that read files people may change elsewhere.</p>
+      </div>
+      <div class="feature-list">
+        <article>
+          <h3>Stable snapshots</h3>
+          <p>Read exact, frozen bytes with a filesystem signature checked before and after the read. A changing file is retried or rejected.</p>
+        </article>
+        <article>
+          <h3>SHA-256 revisions</h3>
+          <p>Hash in-memory bytes or a file on disk, then compare fingerprints when it is time to decide whether to save.</p>
+        </article>
+        <article>
+          <h3>Your save policy</h3>
+          <p>The gem observes revisions; it does not reload, merge, or write the file. The application stays in control.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="install wrap" id="install" aria-labelledby="install-title">
+      <div>
+        <h2 id="install-title">Add a revision check.</h2>
+        <p>Requires Ruby 3.2 or newer. No runtime gem dependencies.</p>
+      </div>
+      <div class="install-command"><span>Terminal</span><code>gem install xamidimura</code></div>
+      <a class="text-link" href="https://github.com/noxdea/xamidimura#revision-checks">See the revision API</a>
+    </section>
+  </main>
+
+  <footer class="site-footer wrap">
+    <span>Xamidimura is open source under the MIT License.</span>
+    <a href="https://github.com/noxdea/xamidimura">Source on GitHub</a>
+  </footer>
+</body>
+</html>
